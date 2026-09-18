@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#071a16">
+<title>GPTで宿命鑑定｜GOEN</title>
+<style>
+:root{--bg:#071a16;--bg2:#0d2a21;--gold:#d9bb76;--cream:#f6f0df;--muted:#c8c4b7;}
+*{box-sizing:border-box} body{margin:0;font-family:"Hiragino Sans","Yu Gothic",system-ui,sans-serif;color:var(--cream);background:
+radial-gradient(circle at 50% 0%,#1b4737 0,transparent 35%),linear-gradient(180deg,var(--bg2),var(--bg));min-height:100vh}
+.wrap{max-width:760px;margin:auto;padding:42px 18px 70px}
+.brand{text-align:center;letter-spacing:.22em;font-family:Georgia,serif;font-size:30px;color:#fff}
+.tag{text-align:center;color:var(--gold);font-size:12px;letter-spacing:.12em;margin:5px 0 38px}
+.card{border:1px solid rgba(217,187,118,.5);border-radius:24px;padding:28px 18px;background:rgba(4,18,15,.72);box-shadow:0 20px 70px rgba(0,0,0,.28)}
+.eyebrow{text-align:center;color:var(--gold);font-size:12px;letter-spacing:.12em}
+h1{font-family:Georgia,"Yu Mincho",serif;text-align:center;font-size:clamp(30px,8vw,48px);line-height:1.25;margin:10px 0 12px}
+.lead{text-align:center;color:var(--muted);line-height:1.8;margin:0 auto 24px;max-width:560px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:22px 0}
+.step{border:1px solid rgba(217,187,118,.25);border-radius:14px;padding:12px 6px;text-align:center;font-size:12px;color:#e8dfc7}
+.step b{display:block;color:var(--gold);font-size:17px;margin-bottom:3px}
+button{width:100%;border:0;border-radius:16px;padding:18px 16px;font-weight:800;font-size:17px;cursor:pointer;background:linear-gradient(135deg,#f0d89c,#b88b3d);color:#10241d;box-shadow:0 8px 28px rgba(217,187,118,.2)}
+button:active{transform:scale(.99)} #status{min-height:26px;text-align:center;color:#e9d7a7;font-size:13px;margin-top:10px}
+details{margin-top:18px;border-top:1px solid rgba(217,187,118,.22);padding-top:18px}
+summary{cursor:pointer;text-align:center;color:var(--muted);font-size:13px}
+textarea{width:100%;height:220px;margin-top:14px;padding:14px;border-radius:12px;border:1px solid rgba(217,187,118,.25);background:#061511;color:#d9d6ca;resize:none;font-size:12px;line-height:1.65}
+.note{margin-top:24px;padding:15px;border-radius:14px;background:rgba(255,255,255,.04);font-size:12px;line-height:1.7;color:#bbb9b0}
+.footer{text-align:center;margin-top:34px;color:#9f9d94;font-size:11px} .footer strong{display:block;color:var(--gold);font-family:Georgia,serif;font-size:20px;letter-spacing:.16em;margin-bottom:5px}
+@media(max-width:520px){.steps{grid-template-columns:1fr}.card{padding:25px 14px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<div class="brand">GOEN</div>
+<div class="tag">ご縁でつながる、可能性の森へ</div>
+<section class="card">
+<div class="eyebrow">FREE PROMPT</div>
+<h1>GPTで<br>宿命鑑定をやってみよう</h1>
+<p class="lead">下のボタンを押すだけで、鑑定用プロンプトを全文コピーできます。ChatGPTに貼り付けて、あなたの情報を入力してください。</p>
+<div class="steps">
+<div class="step"><b>01</b>コピー</div>
+<div class="step"><b>02</b>GPTに貼る</div>
+<div class="step"><b>03</b>鑑定・画像化</div>
+</div>
+<button id="copyBtn" type="button">鑑定プロンプトをコピー</button>
+<div id="status" aria-live="polite"></div>
+<details>
+<summary>プロンプト内容を確認する</summary>
+<textarea id="prompt" readonly>あなたは、四柱推命の命式計算と伝統的解釈に詳しい鑑定者です。
+
+入力された「生年月日・出生時間・出生地・性別」から命式をできる限り正確に算出し、性格・才能・仕事・お金・恋愛・人間関係・人生の流れ・大運・2026〜2030年・2026年月別運勢まで総合鑑定してください。
+
+四柱推命は科学的に実証された性格診断や未来予測ではありません。科学的事実として断定せず、伝統的な占術として解釈してください。
+
+【入力情報】
+・生年月日：
+・出生時間：
+・出生地：
+・性別：
+
+【重要な計算ルール】
+・月柱は旧暦月ではなく節入り（節気）基準
+・年柱は原則として立春を境界とする
+・出生時間不明の場合は時柱を推測せず「時柱不明」とする
+・必要な場合は出生地による時差や真太陽時補正の扱いを説明する
+・時辰や日付変更の境界付近で結果が変わる場合は説明する
+・流派差がある場合は採用した計算法を明記する
+・確信が持てない干支や時柱を推測で作らない
+・一つの星だけで断定せず、命式全体から解釈する
+・本人の実際の経歴を知らない場合、起きた出来事を創作しない
+・未来の出来事を断定しない
+
+【出力順】
+① 命式
+年柱｜月柱｜日柱｜時柱 の形式で表示。
+
+② 命式の詳細
+日主、五行バランス、陰陽、十二支、蔵干、通変星、十二運、身強／身弱、命式全体の特徴。
+
+③ 性格・本質
+表向き、内側の本質、強み、弱み・注意点、人間関係、ストレス時、価値観、誤解されやすい点。実生活の具体例も入れる。
+
+④ 才能・仕事
+才能、伸ばすべき能力、向く仕事・役割、苦手な環境、組織／独立、営業／専門職、リーダー／サポート、対人／集中、安定／開拓。仕事の進め方、裁量、評価されやすい能力、モチベーション、成果につながる働き方まで具体化。
+
+⑤ お金・財運
+お金を作りやすい方法、失敗パターン、守り方、収入を伸ばす鍵、一発／積み上げ、自力／人や組織、本業・副業・事業、投資、人脈と収入、お金を使いやすい分野。
+
+⑥ 恋愛・結婚・人間関係
+惹かれやすい相手、好かれやすい点、恋愛のクセ、結婚後、相性のよいパートナー像、衝突しやすいタイプ、友人、仕事、家族、人付き合いのポイント。
+
+⑦ 大運・人生の流れ
+順行／逆行、起運年齢、算出方法を説明。
+0〜18歳、19〜29歳、30〜36歳、37〜45歳、46〜60歳、61〜75歳、76歳以降について、テーマ・変化・仕事・お金・恋愛人間関係・成長ポイントを分析。
+さらに A｜前半の流れ、B｜現在地、C｜黄金期、D｜後半の強み で整理。「黄金期」は成功保証ではなく能力を活かしやすい時期として扱う。
+
+⑧ 2026〜2030年
+各年についてテーマ、仕事、お金、恋愛・人間関係、新しい挑戦、注意点、その年を活かす行動。最後に5年間全体の流れを整理。
+
+⑨ 2026年月別運勢
+節入りを考慮し、1〜12月を
+【○月】
+テーマ：
+◎ やると良いこと：
+△ 注意したいこと：
+の形式でまとめる。必要なら節月とのずれを注記。
+
+⑩ 総合鑑定
+「この命式を一言で表すなら？」というキャッチコピー。
+最大の強み、落とし穴、仕事で活かす能力、お金を伸ばす鍵、人間関係で大切なこと、人生テーマ。
+最後に「今日からできる3つの行動」。
+
+⑪ 3枚の保存版画像用文章
+スマートフォンで読みやすく、画像にそのまま掲載できる完成文章にする。
+
+【画像1｜あなたの性格・人生・運命の全体像】
+基本情報／命式／キーワード5個／性格・本質／才能・強み／課題／向いている仕事／仕事・お金／恋愛・人間関係／人生の流れ（0〜18、19〜29、30〜36、37〜45、46歳以降）／本人への短いメッセージ。
+
+【画像2｜あなたの人生グラフ（全体像）】
+0〜18、19〜29、30〜36、37〜45、46〜60、61〜75、76歳以降について、テーマ・変化・仕事・人間関係・成長ポイント。
+A｜前半の流れ、B｜現在地、C｜黄金期、D｜後半の強み。
+強み・才能／人生テーマ／これからのキーワード3〜5個。
+
+【画像3｜2026年 運勢カレンダー】
+1〜12月を「テーマ／◎やると良いこと／△注意したいこと」で簡潔に。
+最後に「2026年全体の流れ／恋愛・人間関係／仕事・お金／開運アドバイス」。
+
+⑫ 画像生成AI向け完成指示文
+画像1・2・3それぞれについて、完成文章を正確に掲載する画像生成指示文を作成。
+
+【共通デザイン】
+深いネイビー＋繊細なゴールド箔。月、星、月の満ち欠け、天体軌道、植物、アンティークな占星術書、上質紙。高級・神秘的・静かで知的・大人向け。
+「100年前の美しい占星術書を現代のラグジュアリーブランドが再編集した世界観」。
+派手な紫、過剰なキラキラ、安っぽい占い広告、過度なスピリチュアル感は避ける。
+日本語の可読性とスマホでの余白を最優先し、3枚の色・フォント・装飾・罫線・タイトル位置・紙質を統一する。
+
+【画像1】
+高級パーソナル診断書。基本情報と命式、5キーワード、性格・才能・課題・仕事・お金・恋愛・人生の流れを情報カードで整理。文章を主役にする。
+
+【画像2】
+人生の時間軸を主役にし、年代を美しいゴールドラインまたは緩やかな曲線でつなぐ。A〜Dの段階が分かる構成。科学的な数値グラフには見せず「人生の地図」として表現。
+
+【画像3】
+2026年1〜12月を12カードまたは整然としたグリッドで配置。月の満ち欠けを控えめに使い、下部に年間まとめ。重要な月は小さなゴールドの星・月・細線で控えめに強調。「最高」「最悪」「必ず成功」等の断定表現は使わない。
+
+鑑定結果を本人に無理に当てはめず、命式から読み取れることと読み取れないことを区別し、流派差がある場合は違いも説明してください。</textarea>
+</details>
+<div class="note">※四柱推命は科学的に実証された性格診断・未来予測ではありません。伝統的な占術として、自分を見つめるヒントとしてお楽しみください。出生時間が分からない場合は「不明」と入力できます。</div>
+</section>
+<div class="footer"><strong>GOEN</strong>自分を知ることから、新しいご縁へ。</div>
+</main>
+<script>
+const btn=document.getElementById('copyBtn'), prompt=document.getElementById('prompt'), status=document.getElementById('status');
+btn.addEventListener('click', async()=>{
+  try {
+    await navigator.clipboard.writeText(prompt.value);
+  } catch(e) {
+    prompt.hidden=false; prompt.select(); document.execCommand('copy');
+  }
+  btn.textContent='✓ コピーしました';
+  status.textContent='ChatGPTに貼り付けて、生年月日などを入力してください。';
+  setTimeout(()=>btn.textContent='鑑定プロンプトをコピー',3000);
+});
+</script>
+</body>
+</html>
